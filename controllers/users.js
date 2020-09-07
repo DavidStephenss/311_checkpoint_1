@@ -30,10 +30,25 @@ const createUser = (req, res) => {
 // * PUT /users/:id
 const updateUser = (req,res) => {
   let foundUser = users.find( user => user._id === parseInt(req.params.userId))
-  foundUser.name = req.body.name ? req.body.name : foundUser.name
-  foundUser.avatar = req.body.avatar ? req.body.avatar : foundUser.avatar
-  foundUser.occupation = req.body.occupation ? req.body.occupation : foundUser.occupation
-  res.json(foundUser) 
+  if (user.isActive == false) {
+    res
+      .status(400)
+      .json({ message: `No user with the id of ${req.params.id}` })
+  } else {
+    user.name = req.body.name ? req.body.name : user.name
+    user.username = req.body.username ? req.body.username : user.username
+    user.email = req.body.email ? req.body.email : user.email
+    user.address.street = req.body.address.street ? req.body.address.street : user.address.street
+    user.address.suite = req.body.address.suite ? req.body.address.suite : user.address.suite
+    user.address.city = req.body.address.city ? req.body.address.city : user.address.city
+    user.address.zipcode = req.body.address.zipcode ? req.body.address.zipcode : user.address.zipcode
+    user.phone = req.body.phone ? req.body.phone : user.phone
+    user.website = req.body.website ? req.body.website : user.website
+    user.company.name = req.body.company.name ? req.body.company.name : user.company.name
+    user.company.catchPhrase = req.body.company.catchPhrase ? req.body.company.catchPhrase : user.company.catchPhrase
+    user.company.bs = req.body.company.bs ? req.body.company.bs : user.company.bs
+    res.json(user)
+}
 }
 //   * Update one user matching the path param (id). You may again use the sampleUser code as your "body" for this request
 

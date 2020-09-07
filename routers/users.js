@@ -9,9 +9,3 @@ router.put('/users:id', usersControllers.updateUser)
 router.delete('users:id', usersControllers.deleteUser)
 
 module.exports = router
-
-// listUsers,
-//   userById,
-//   createUser,
-//   updateUser,
-//   deleteUser
